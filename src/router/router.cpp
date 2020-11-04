@@ -7,7 +7,10 @@
 using namespace std;
 
 
-router::router() {}
+router::router() {int x=0;}
+
+
+
 router::~router() {}
 
 
