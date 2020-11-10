@@ -41,16 +41,19 @@ packet read_packet(string packet_str)
 	packet pack;
 	string payload_str;
 
-	// parameters must be ordered as in send_packet !
-	iss >> pack.time_stamp
-		>> pack.sender_address
-		>> pack.receiver_address
-		>> pack.type
-		>> payload_str
-		>> pack.signature
-		;
+	if(packet_str != "-")
+	{
+		// parameters must be ordered as in send_packet !
+		iss >> pack.time_stamp
+			>> pack.sender_address
+			>> pack.receiver_address
+			>> pack.type
+			>> payload_str
+			>> pack.signature
+			;
+		pack.payload.push_back(payload_str);
+	}
 
-	pack.payload.push_back(payload_str);
 	return pack;
 }
 

@@ -37,16 +37,13 @@ string URLRead(string URL, string dir, vector<UrlRequest::GetParameter> params)
 
 void post_packet(packet pack)
 {
-	string payload_str = "-";
-	for(auto& elem : pack.payload) payload_str += elem + "-";
-
 	vector<UrlRequest::GetParameter> params = 	
 	{
 	    {"ts", pack.time_stamp},
 	    {"sa", to_string(pack.sender_address)},
 	    {"ra", to_string(pack.receiver_address)},
 	    {"type", pack.type},
-	    {"payload", payload_str},
+	    {"payload", pack.payload[0]},
 	    {"sig", pack.signature}
 	};	
 
@@ -59,7 +56,11 @@ packet get_packet(int net)
 
 	string packet_str = URLRead(cloud, out_dir, params);
 
-	return read_packet(packet_str);
+	packet pack = read_packet(packet_str);
+
+	pack.decrypt(0);
+
+	return pack;
 }
 
 

@@ -26,8 +26,8 @@ int main(int argc, char const *argv[])
 	print_help();
 
     thread packs_checker { [=]() { while(active) {this_thread::sleep_for(chrono::seconds(1) ); brok.check_packets();} } };
-    thread pings_checker { [=]() { while(active) {this_thread::sleep_for(chrono::seconds(5) ); brok.check_pings  ();} } };
-    thread pings_sender  { [=]() { while(active) {this_thread::sleep_for(chrono::seconds(10)); brok.send_ping    ();} } };
+//    thread pings_checker { [=]() { while(active) {this_thread::sleep_for(chrono::seconds(5) ); brok.check_pings  ();} } };
+//    thread pings_sender  { [=]() { while(active) {this_thread::sleep_for(chrono::seconds(10)); brok.send_ping    ();} } };
 
 
     while(true)
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
 
 
     packs_checker.join();
-    pings_checker.join();
+//    pings_checker.join();
 
 	return 0;
 }
