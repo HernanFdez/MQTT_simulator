@@ -1,5 +1,3 @@
-use a dedicated named pipe to send messages between each pair of terminals
-
 implement function handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
 
 
