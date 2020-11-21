@@ -34,7 +34,7 @@ Broker and client (and eventually router) sessions provide some basic user inter
 
 A system help is automatically shown whenever a session is started (when the corresponding executable is run), explaining the supported control commands
 
-Sessions use multithread processing to control packets input/output and user interface in paralell 
+Sessions use multithread processing to control packets input/output and user interface in parallel 
 
 
 ### Packets Structure
