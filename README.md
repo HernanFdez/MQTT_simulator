@@ -90,7 +90,7 @@ status_code -> status of the connection (200 meaning OK)
 
 time_stamp  -> UnixTime corresponding to the instant the connection was stablished
 
-key         -> key (or pre-key at the initial Diffie-Hellman key generation process) used to encrypt/decrypt packets
+key         -> key (or pre-key at the initial Diffie-Hellman key generation process) used to encrypt/decrypt packets (explained later on)
 
 description -> human readable description of the connection
 
