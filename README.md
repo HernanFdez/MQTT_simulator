@@ -37,7 +37,7 @@ A system help is automatically shown whenever a session is started (when the cor
 Sessions use multithread processing to control packets input/output and user interface in paralell 
 
 
-### Packets
+### Packets Structure
 A packet is a list of values for predifined parameters, namely: 
 
 time_stamp       -> UnixTime corresponding to the instant the packet is sent
@@ -52,9 +52,7 @@ payload          -> actual information intended to be transmited (status code, e
 
 signature        -> number validating the authenticity of the packet (some sort of simple hash code for the decoded payload)
 
-###
-###
-###
+### Packets Types
 A packet can be of any of the following types:
 
 join                         -> device joining the network
