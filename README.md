@@ -39,7 +39,6 @@ Sessions use multithread processing to control packets input/output and user int
 
 ### Packets
 A packet is a list of values for predifined parameters, namely: 
-
 time_stamp       -> UnixTime corresponding to the instant the packet is sent
 
 sender_address   -> address of the device (broker or client) sending the packet
