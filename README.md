@@ -6,7 +6,7 @@ Message Queuing Telemetry Transport (MQTT) is a lightweight, publish-subscribe n
 
 It usually runs over TCP/IP, but any network protocol that provides ordered, lossless, bi-directional connections can support MQTT
 
-It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited
+It is designed for connections with remote locations where a "small code footprint" is required or network bandwidth is limited
 
 
 ### Main Idea
