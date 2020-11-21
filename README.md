@@ -1,5 +1,5 @@
 # MQTT_simulator
-## Demonstration project aiming to show the main concepts behind MQTT protocol and basic (simplified) network communication 
+## Demonstration project aiming to show the main concepts behind MQTT protocol and basic (simplified) network communication schemes
 
 ### Introduction (from WikipediA)
 Message Queuing Telemetry Transport (MQTT) is a lightweight, publish-subscribe network protocol used to transport messages between devices
