@@ -53,6 +53,8 @@ payload          -> actual information intended to be transmited (status code, e
 signature        -> number validating the authenticity of the packet (some sort of simple hash code for the decoded payload)
 
 ###
+###
+###
 A packet can be of any of the following types:
 
 join                         -> device joining the network
