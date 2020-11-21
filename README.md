@@ -2,9 +2,9 @@
 ## Demonstration project aiming to show the main concepts behind MQTT protocol and basic (simplified) network communication schemes
 
 ### Introduction (from WikipediA)
-Message Queuing Telemetry Transport (MQTT) is a lightweight, publish-subscribe network protocol used to transport messages between devices
+Message Queuing Telemetry Transport (MQTT) is a lightweight, publish-subscribe network protocol used to send messages between devices
 
-The protocol usually runs over TCP/IP; however, any network protocol that provides ordered, lossless, bi-directional connections can support MQTT
+It usually runs over TCP/IP, but any network protocol that provides ordered, lossless, bi-directional connections can support MQTT
 
 It is designed for connections with remote locations where a "small code footprint" is required or the network bandwidth is limited
 
