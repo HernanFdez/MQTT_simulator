@@ -15,14 +15,27 @@ struct packet
 	int signature = 0;
 
 	void decrypt(int key) {payload = read_payload(payload[0], key);}
+
+	int payload_code() 
+	{
+		int prod=1; 
+		for(auto& elem : payload) for(int i=0; i<elem.length(); i++) prod = (prod * (int) elem[i]) % 1000;
+
+		return(prod); 
+	}
+
+	bool authentic() { return(payload_code() == signature); }
+
+	void sign() { signature = payload_code(); } 
 };
 
 
-void send_packet(packet pack, int key)
+void send_packet(packet pack, int key, bool signing = true)
 {
 	ofstream out("network", ios_base::app);
 
-	pack.time_stamp=time(0);	
+	pack.time_stamp=time(0);
+	if(signing) pack.sign();	
 
 	// parameters must be ordered as in read_packet !
 	out << pack.time_stamp << "\t"
@@ -53,6 +66,8 @@ packet read_packet(string packet_str)
 			;
 		pack.payload.push_back(payload_str);
 	}
+
+//	cout<<"sender_address = "<<pack.sender_address<<endl;
 
 	return pack;
 }

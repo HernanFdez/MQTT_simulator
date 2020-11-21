@@ -11,7 +11,7 @@ router:: router()
 {
 	srand(time(0)); 
 	gate = rand()%999+1; 
-	cout<<"*** ROUTER SESSION STARTED AT GATE "<<gate<<" ***"<<endl<<endl;
+	cout<< "*** ROUTER SESSION STARTED AT GATE "<< gate <<" ***" <<endl<<endl;
 }
 router::~router() {}
 
@@ -38,19 +38,14 @@ void router::check_downloads()
 		packet pack = get_packet(gate);
 		if(pack.time_stamp == 0) break;
 		new_packets.push_back(pack);
-	}
-
-	while(true)
-	{
-		packet pack = get_packet(0);
-		if(pack.time_stamp == 0) break;
-		new_packets.push_back(pack);
+//		cout<<"incoming packet"<<endl;
 	}
 
 	for(auto& pack : new_packets) 
 	{
+//		cout<<"downloading packet..."<<endl;
 		pack.receiver_address = pack.receiver_address % 1000;
-		send_packet(pack, 0);
+		send_packet(pack, 0, false);
 	}
 }
 

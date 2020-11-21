@@ -12,10 +12,10 @@ bool active = true;
 
 void print_help()
 {
-	cout << "-----------------------------------------------------"	<< endl
-		 << "| help                  -> shows this system help   |"	<< endl
-		 << "| exit                  -> exits session            |" << endl
-		 << "-----------------------------------------------------"	<< endl << endl;
+	cout << "----------------------------------------------------"	<< endl
+		 << "| help                  -> show this system help   |"	<< endl
+		 << "| exit                  -> exit session            |" << endl
+		 << "----------------------------------------------------"	<< endl << endl;
 }
 
 

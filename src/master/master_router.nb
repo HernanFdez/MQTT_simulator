@@ -10,189 +10,398 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     17832,        378]
-NotebookOptionsPosition[     16660,        350]
-NotebookOutlinePosition[     17023,        366]
-CellTagsIndexPosition[     16980,        363]
+NotebookDataLength[     34395,        778]
+NotebookOptionsPosition[     32422,        733]
+NotebookOutlinePosition[     32849,        750]
+CellTagsIndexPosition[     32806,        747]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[
- RowBox[{
-  RowBox[{"DeleteCloudExpression", "/@", 
-   RowBox[{"CloudExpressions", "[", "All", "]"}]}], ";"}]], "Input",
- CellChangeTimes->{{3.8134450271445923`*^9, 3.813445030957405*^9}, {
-   3.8134463910104237`*^9, 3.8134463918187113`*^9}, {3.813448960035081*^9, 
-   3.813448997491995*^9}, {3.813451946484302*^9, 3.813451947487727*^9}, {
-   3.813452193772599*^9, 3.813452198599575*^9}, 3.8134532531961718`*^9},
- CellLabel->
-  "In[179]:=",ExpressionUUID->"e0937394-699c-4498-bd3b-9fc90a0741b8"],
+
+Cell[CellGroupData[{
+Cell["MQTT Master Router", "Title",
+ CellChangeTimes->{{3.814791372592608*^9, 3.814791380752564*^9}},
+ TextAlignment->Center,ExpressionUUID->"516c64ed-0726-45b9-84b3-38d2222c3f12"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData["$UserURLBase"], "Input",
- CellLabel->
-  "In[124]:=",ExpressionUUID->"4c406e40-5f01-4950-b1b8-727b8b2215e7"],
+Cell["ReadMe!", "Chapter",
+ CellChangeTimes->{{3.814791662021721*^9, 
+  3.8147916663256197`*^9}},ExpressionUUID->"743ffe97-7135-49c7-a57e-\
+44cec5927a0b"],
 
-Cell[BoxData["\<\"hernan.fg96\"\>"], "Output",
- CellChangeTimes->{
-  3.813439083315359*^9, 3.813440372730702*^9, 3.8134443171093693`*^9, {
-   3.81344465028587*^9, 3.813444652314826*^9}, 3.814003158087219*^9, 
-   3.814003813827067*^9, 3.814007681631754*^9},
- CellLabel->
-  "Out[124]=",ExpressionUUID->"b9b27d3b-e490-4ad3-83fc-e2a4e042dce9"]
+Cell[TextData[{
+ "* This ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " notebook serves to create/initialize/control the buffer and input/output \
+APIs used by the ",
+ StyleBox["MQTT Master Router",
+  FontWeight->"Bold"],
+ " that the ",
+ StyleBox["router_side",
+  FontWeight->"Bold"],
+ " program communicates with.\n* The buffer CloudExpression (",
+ StyleBox["https://www.wolframcloud.com/objects/hernan.fg96/CloudExpression/\
+MQTT/buffer",
+  FontWeight->"Bold"],
+ ") as well as the input/output APIs (",
+ StyleBox["https://www.wolframcloud.com/obj/hernan.fg96/MQTT/input",
+  FontWeight->"Bold"],
+ "  &  ",
+ StyleBox["https://www.wolframcloud.com/obj/hernan.fg96/MQTT/output",
+  FontWeight->"Bold"],
+ ") defined hereby, are public, so anyone can access them.\n* The paths (",
+ StyleBox["MQTT/input",
+  FontWeight->"Bold"],
+ " & ",
+ StyleBox["MQTT/output",
+  FontWeight->"Bold"],
+ ") relative to the ",
+ StyleBox["$UserURLBase",
+  FontWeight->"Bold"],
+ " (here ",
+ StyleBox["hernan.fg96",
+  FontWeight->"Bold"],
+ ") are the ones to be used in the requests.h header. "
+}], "Text",
+ CellChangeTimes->{{3.8147916739099092`*^9, 3.814791983773638*^9}, {
+  3.814792247369817*^9, 3.814792445907793*^9}, {3.814792488380931*^9, 
+  3.814792535023974*^9}, {3.814792568406855*^9, 3.8147927037677517`*^9}, {
+  3.81479277301023*^9, 3.8147928151816397`*^9}, {3.8147928647338963`*^9, 
+  3.8147928834163847`*^9}, {3.814794908735197*^9, 3.814794915309099*^9}, {
+  3.814794954326939*^9, 3.814795020968852*^9}, {3.8148657261143103`*^9, 
+  3.8148657290273*^9}},ExpressionUUID->"97a5362a-0ade-45be-bba2-fc27c05e95f9"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"base", "=", "\"\<MQTT\>\""}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"input", "=", 
-  RowBox[{"base", "<>", "\"\</input\>\""}]}], "\[IndentingNewLine]", 
- RowBox[{"output", "=", 
-  RowBox[{"base", "<>", "\"\</output\>\""}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"buffer", "=", 
-    RowBox[{"base", "<>", "\"\</buffer\>\""}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"If", "[", 
-   RowBox[{
-    RowBox[{"NoneTrue", "[", 
-     RowBox[{
-      RowBox[{"CloudExpressions", "[", "]"}], ",", 
-      RowBox[{
-       RowBox[{
-        RowBox[{"FileNameTake", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"FullForm", "[", "#", "]"}], "[", 
-           RowBox[{"[", 
-            RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"7", ",", 
-            RowBox[{"-", "1"}]}], "}"}]}], "]"}], "\[Equal]", "buffer"}], 
-       "&"}]}], "]"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"ce", "=", 
-     RowBox[{"CreateCloudExpression", "[", 
-      RowBox[{
-       RowBox[{"<|", "|>"}], ",", "buffer"}], "]"}]}], ",", 
-    "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"ce", "=", 
-      RowBox[{"CloudExpression", "[", "buffer", "]"}]}], ";", "  ", 
-     RowBox[{"Put", "[", 
-      RowBox[{
-       RowBox[{"<|", "|>"}], ",", "ce"}], "]"}], ";"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"SetOptions", "[", 
-    RowBox[{"ce", ",", 
-     RowBox[{"PartProtection", "\[Rule]", "None"}]}], "]"}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"inputURL", "=", 
-    RowBox[{
-     RowBox[{"CloudPublish", "[", " ", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"APIFunction", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"\"\<ts\>\"", "\[Rule]", "Integer"}], ",", 
-           RowBox[{"\"\<sa\>\"", " ", "\[Rule]", "Integer"}], ",", 
-           RowBox[{"\"\<ra\>\"", "\[Rule]", "Integer"}], ",", 
-           RowBox[{"\"\<type\>\"", "\[Rule]", "String"}], ",", 
-           RowBox[{"\"\<payload\>\"", "\[Rule]", "String"}], ",", 
-           RowBox[{"\"\<sig\>\"", "\[Rule]", "String"}]}], "}"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{"Module", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"net", "=", 
-              RowBox[{"ToString", "@", 
-               RowBox[{"IntegerPart", "[", 
-                RowBox[{"#ra", "/", "1000"}], "]"}]}]}], "}"}], ",", 
-            "\[IndentingNewLine]", 
-            RowBox[{
-             RowBox[{"pack", "=", 
-              RowBox[{"{", 
-               RowBox[{
-               "#ts", ",", "#sa", ",", "#ra", ",", "#type", ",", "#payload", 
-                ",", "#sig"}], "}"}]}], ";", "\[IndentingNewLine]", 
-             RowBox[{"If", "[", 
-              RowBox[{
-               RowBox[{"KeyExistsQ", "[", 
-                RowBox[{"ce", ",", "net"}], "]"}], ",", 
-               RowBox[{"AppendTo", "[", 
-                RowBox[{
-                 RowBox[{"ce", "[", "net", "]"}], ",", "pack"}], "]"}], ",", 
-               RowBox[{"AssociateTo", "[", 
-                RowBox[{"ce", ",", 
-                 RowBox[{"net", "\[Rule]", 
-                  RowBox[{"{", "pack", "}"}]}]}], "]"}]}], "]"}], ";", " ", 
-             "\[IndentingNewLine]", 
-             RowBox[{"If", "[", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"Length", "@", 
-                 RowBox[{"ce", "[", "net", "]"}]}], ">", "3"}], ",", 
-               RowBox[{
-                RowBox[{"ce", "[", 
-                 RowBox[{"net", ",", "1"}], "]"}], "=."}]}], "]"}], ";", 
-             "\[IndentingNewLine]", 
-             RowBox[{"HTTPResponse", "[", "200", "]"}]}]}], 
-           "\[IndentingNewLine]", "]"}], "&"}]}], "\[IndentingNewLine]", " ", 
-        "]"}], "\[IndentingNewLine]", ",", "input"}], "]"}], "[", 
-     RowBox[{"[", "1", "]"}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"outputURL", "=", 
-   RowBox[{
-    RowBox[{"CloudPublish", "[", " ", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"APIFunction", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"\"\<net\>\"", " ", "\[Rule]", "String"}], "}"}], ",", 
-        "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"Module", "[", 
-          RowBox[{
-           RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"If", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"KeyExistsQ", "[", 
-                RowBox[{"ce", ",", "#net"}], "]"}], "&&", " ", 
-               RowBox[{
-                RowBox[{"Length", "@", 
-                 RowBox[{"ce", "[", "#net", "]"}]}], ">", "0"}]}], ",", 
-              RowBox[{
-               RowBox[{"pack", "=", 
-                RowBox[{"StringRiffle", "[", 
-                 RowBox[{
-                  RowBox[{"ToString", "/@", 
-                   RowBox[{"ce", "[", 
-                    RowBox[{"#net", ",", "1"}], "]"}]}], ",", "\"\<\\t\>\""}],
-                  "]"}]}], ";", " ", 
-               RowBox[{
-                RowBox[{"ce", "[", 
-                 RowBox[{"#net", ",", "1"}], "]"}], "=."}]}], " ", ",", 
-              RowBox[{"pack", "=", "\"\<-\>\""}]}], "]"}], ";", 
-            "\[IndentingNewLine]", 
-            RowBox[{"HTTPResponse", "[", "pack", "]"}]}]}], 
-          "\[IndentingNewLine]", "]"}], "&"}]}], "\[IndentingNewLine]", "]"}],
-       "\[IndentingNewLine]", ",", "output"}], "]"}], "[", 
-    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "Input",\
+Cell["Creating/Initializing buffer & input/output APIs", "Chapter",
+ CellChangeTimes->{{3.81479143090668*^9, 
+  3.814791477533697*^9}},ExpressionUUID->"2280b48d-4918-4d54-917c-\
+1dccdc29a710"],
 
+Cell[TextData[StyleBox["Note: If you do not have a WolframCloud account, or \
+do not really know how to manage CloudExpressions and APIFunctions, don\
+\[CloseCurlyQuote]t evaluate this code, simply keep in the requests.h header \
+the addresses already provided in this cell\[CloseCurlyQuote]s output, they \
+are all free to access!  ",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.814793689586372*^9, 3.814793723564714*^9}, {
+  3.814793773359167*^9, 
+  3.814793954103557*^9}},ExpressionUUID->"07e61074-2f04-42f2-8620-\
+9d92d7045e43"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Defining", " ", "cloud", " ", "addresses"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"base", "=", "\"\<MQTT\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"input", "=", 
+     RowBox[{"base", "<>", "\"\</input\>\""}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"output", "=", 
+     RowBox[{"base", "<>", "\"\</output\>\""}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"buffer", "=", 
+     RowBox[{"base", "<>", "\"\</buffer\>\""}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pings", "=", 
+     RowBox[{"base", "<>", "\"\</pings\>\""}]}], ";"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Creating", "/", "Initializing"}], " ", "buffer"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"NoneTrue", "[", 
+       RowBox[{
+        RowBox[{"CloudExpressions", "[", "]"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"FileNameTake", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"FullForm", "[", "#", "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"7", ",", 
+              RowBox[{"-", "1"}]}], "}"}]}], "]"}], "\[Equal]", "buffer"}], 
+         "&"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"bufferce", "=", 
+       RowBox[{"CreateCloudExpression", "[", 
+        RowBox[{
+         RowBox[{"<|", "|>"}], ",", "buffer", ",", 
+         RowBox[{"Permissions", "\[Rule]", "\"\<Public\>\""}]}], "]"}]}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"bufferce", "=", 
+        RowBox[{"CloudExpression", "[", "buffer", "]"}]}], ";", "  ", 
+       RowBox[{"Put", "[", 
+        RowBox[{
+         RowBox[{"<|", "|>"}], ",", "bufferce"}], "]"}]}]}], 
+     "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"bufferce", ",", 
+      RowBox[{"PartProtection", "\[Rule]", "None"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"Creating", "/", "Initializing"}], " ", "pings"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"NoneTrue", "[", 
+       RowBox[{
+        RowBox[{"CloudExpressions", "[", "]"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"FileNameTake", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"FullForm", "[", "#", "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"7", ",", 
+              RowBox[{"-", "1"}]}], "}"}]}], "]"}], "\[Equal]", "pings"}], 
+         "&"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"pingsce", "=", 
+       RowBox[{"CreateCloudExpression", "[", 
+        RowBox[{
+         RowBox[{"<|", "|>"}], ",", "pings", ",", 
+         RowBox[{"Permissions", "\[Rule]", "\"\<Public\>\""}]}], "]"}]}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"pingsce", "=", 
+        RowBox[{"CloudExpression", "[", "pings", "]"}]}], ";", "  ", 
+       RowBox[{"Put", "[", 
+        RowBox[{
+         RowBox[{"<|", "|>"}], ",", "pingsce"}], "]"}]}]}], 
+     "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"pingsce", ",", 
+      RowBox[{"PartProtection", "\[Rule]", "None"}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"pings", " ", "checker"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"checkpings", "[", "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"!", 
+            RowBox[{"KeyExistsQ", "[", 
+             RowBox[{"pingsce", ",", "#"}], "]"}]}], ")"}], "||", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"pingsce", "[", "#", "]"}], "<", 
+            RowBox[{
+             RowBox[{"UnixTime", "[", "]"}], "-", "10"}]}], ")"}]}], ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"pingsce", "[", "#", "]"}], "=."}], ";", 
+          RowBox[{
+           RowBox[{"bufferce", "[", "#", "]"}], "=."}]}]}], "]"}], "&"}], "/@", 
+      RowBox[{"Keys", "[", 
+       RowBox[{"bufferce", "[", "]"}], "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Creating", " ", "input", " ", "API"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"inputURL", "=", 
+     RowBox[{
+      RowBox[{"CloudPublish", "[", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"APIFunction", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"\"\<ts\>\"", "\[Rule]", "Integer"}], ",", 
+            RowBox[{"\"\<sa\>\"", " ", "\[Rule]", "Integer"}], ",", 
+            RowBox[{"\"\<ra\>\"", "\[Rule]", "Integer"}], ",", 
+            RowBox[{"\"\<type\>\"", "\[Rule]", "String"}], ",", 
+            RowBox[{"\"\<payload\>\"", "\[Rule]", "String"}], ",", 
+            RowBox[{"\"\<sig\>\"", "\[Rule]", "Integer"}]}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Module", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"net", "=", 
+                RowBox[{"ToString", "@", 
+                 RowBox[{"IntegerPart", "[", 
+                  RowBox[{"#ra", "/", "1000"}], "]"}]}]}], ",", "receivers", 
+               ",", "pack"}], "}"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"checkpings", "[", "]"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"receivers", "=", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"net", "\[NotEqual]", "\"\<0\>\""}], ",", 
+                 RowBox[{"{", "net", "}"}], ",", 
+                 RowBox[{"Complement", "[", 
+                  RowBox[{
+                   RowBox[{"Keys", "@", 
+                    RowBox[{"bufferce", "[", "]"}]}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"ToString", "@", 
+                    RowBox[{"IntegerPart", "[", 
+                    RowBox[{"#sa", "/", "1000"}], "]"}]}], "}"}]}], "]"}]}], 
+                " ", "]"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"pack", "=", 
+               RowBox[{"{", 
+                RowBox[{
+                "#ts", ",", "#sa", ",", "#ra", ",", "#type", ",", "#payload", 
+                 ",", "#sig"}], "}"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"Do", "[", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"KeyExistsQ", "[", 
+                   RowBox[{"bufferce", ",", "rec"}], "]"}], ",", 
+                  RowBox[{"AppendTo", "[", 
+                   RowBox[{
+                    RowBox[{"bufferce", "[", "rec", "]"}], ",", "pack"}], 
+                   "]"}], ",", 
+                  RowBox[{"AssociateTo", "[", 
+                   RowBox[{"bufferce", ",", 
+                    RowBox[{"rec", "\[Rule]", 
+                    RowBox[{"{", "pack", "}"}]}]}], "]"}]}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"rec", ",", "receivers"}], "}"}]}], "]"}], ";", " ", 
+              "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Length", "@", 
+                  RowBox[{"bufferce", "[", "net", "]"}]}], ">", "20"}], ",", 
+                RowBox[{
+                 RowBox[{"bufferce", "[", 
+                  RowBox[{"net", ",", "1"}], "]"}], "=."}]}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"HTTPResponse", "[", "200", "]"}]}]}], 
+            "\[IndentingNewLine]", "]"}], "&"}]}], "\[IndentingNewLine]", " ",
+          "]"}], "\[IndentingNewLine]", ",", "input"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Creating", " ", "output", " ", "API"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"outputURL", "=", 
+     RowBox[{
+      RowBox[{"CloudPublish", "[", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"APIFunction", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<net\>\"", " ", "\[Rule]", "String"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Module", "[", 
+            RowBox[{
+             RowBox[{"{", "pack", "}"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"checkpings", "[", "]"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"KeyExistsQ", "[", 
+                 RowBox[{"pingsce", ",", "#net"}], "]"}], ",", 
+                RowBox[{
+                 RowBox[{"pingsce", "[", "#net", "]"}], "=", 
+                 RowBox[{"UnixTime", "[", "]"}]}], ",", 
+                RowBox[{"AssociateTo", "[", 
+                 RowBox[{"pingsce", ",", 
+                  RowBox[{"#net", "\[Rule]", 
+                   RowBox[{"UnixTime", "[", "]"}]}]}], "]"}]}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"KeyExistsQ", "[", 
+                  RowBox[{"bufferce", ",", "#net"}], "]"}], "&&", " ", 
+                 RowBox[{
+                  RowBox[{"Length", "@", 
+                   RowBox[{"bufferce", "[", "#net", "]"}]}], ">", "0"}]}], 
+                ",", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"pack", "=", 
+                  RowBox[{"StringRiffle", "[", 
+                   RowBox[{
+                    RowBox[{"ToString", "/@", 
+                    RowBox[{"bufferce", "[", 
+                    RowBox[{"#net", ",", "1"}], "]"}]}], ",", "\"\<\\t\>\""}],
+                    "]"}]}], ";", " ", 
+                 RowBox[{
+                  RowBox[{"bufferce", "[", 
+                   RowBox[{"#net", ",", "1"}], "]"}], "=."}]}], " ", ",", 
+                "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"AssociateTo", "[", 
+                  RowBox[{"bufferce", ",", 
+                   RowBox[{"#net", "\[Rule]", 
+                    RowBox[{"{", "}"}]}]}], "]"}], ";", 
+                 RowBox[{"pack", "=", "\"\<-\>\""}]}]}], 
+               "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"HTTPResponse", "[", "pack", "]"}]}]}], 
+            "\[IndentingNewLine]", "]"}], "&"}]}], "\[IndentingNewLine]", 
+         "]"}], "\[IndentingNewLine]", ",", "output"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Printing", " ", "addresses", " ", "to", " ", "be", " ", "used", " ", 
+     "in", " ", "the", " ", 
+     RowBox[{"requests", ".", "h"}], " ", "header"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"TableForm", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<cloud   -> \>\"", ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<www.wolframcloud.com\>\"", ",", "Bold"}], "]"}]}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<user    -> \>\"", ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"$UserURLBase", ",", "Bold"}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<input   -> \>\"", ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"input", ",", "Bold"}], "]"}], ",", "  ", 
+        RowBox[{"\"\<  (\>\"", "<>", "inputURL", "<>", "\"\< )\>\""}]}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<output  -> \>\"", ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"output", ",", "Bold"}], "]"}], ",", 
+        RowBox[{"\"\<  (\>\"", "<>", "outputURL", "<>", "\"\<)\>\""}]}], 
+       "}"}]}], "\[IndentingNewLine]", "}"}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
  CellChangeTimes->{{3.813407740576891*^9, 3.81340777428899*^9}, {
    3.8134092946878366`*^9, 3.813409348370501*^9}, {3.813431827801035*^9, 
    3.8134318398676367`*^9}, {3.813431890141636*^9, 3.8134320000359077`*^9}, {
@@ -263,41 +472,199 @@ Cell[BoxData[{
    3.813456680031702*^9, {3.813456840135741*^9, 3.813456887038954*^9}, {
    3.81345748771305*^9, 3.813457490158286*^9}, {3.8140038021229687`*^9, 
    3.814003803797627*^9}, 3.8140039544160767`*^9, {3.81400790291183*^9, 
-   3.8140079058448563`*^9}, {3.814008493672411*^9, 3.814008494836318*^9}},
- CellLabel->
-  "In[180]:=",ExpressionUUID->"0a993ee9-9b6e-49ee-9aee-5f9ebff5e8ee"],
+   3.8140079058448563`*^9}, {3.814008493672411*^9, 3.814008494836318*^9}, {
+   3.81401433646345*^9, 3.8140143828145313`*^9}, {3.814014420429253*^9, 
+   3.814014480450321*^9}, {3.8140145113770237`*^9, 3.814014596643045*^9}, {
+   3.814014806773402*^9, 3.814014827648292*^9}, 3.814014865630423*^9, 
+   3.814015023385042*^9, {3.814015179229537*^9, 3.814015196432826*^9}, {
+   3.8140152275642138`*^9, 3.814015233320169*^9}, {3.814015788533373*^9, 
+   3.8140158317941713`*^9}, {3.814015890355015*^9, 3.814015899409081*^9}, {
+   3.814015960043785*^9, 3.814015965729001*^9}, {3.8140168188187113`*^9, 
+   3.814016821677044*^9}, {3.814787163536436*^9, 3.814787169287896*^9}, {
+   3.814787252644354*^9, 3.814787266739439*^9}, {3.8147873686478643`*^9, 
+   3.8147874060569468`*^9}, {3.814789850764847*^9, 3.814789853473384*^9}, 
+   3.8147903142373466`*^9, {3.8147907057679443`*^9, 3.8147907089375772`*^9}, {
+   3.814790755930838*^9, 3.814790763426546*^9}, {3.814791493068287*^9, 
+   3.814791585635988*^9}, {3.814792007248838*^9, 3.814792169102903*^9}, {
+   3.814792212364441*^9, 3.8147922271180897`*^9}, {3.814792920053667*^9, 
+   3.814792957247102*^9}, {3.814793009630917*^9, 3.814793265684936*^9}, {
+   3.814793377819186*^9, 3.8147933881761093`*^9}, {3.814793539833428*^9, 
+   3.814793640008059*^9}, {3.814793742795423*^9, 3.814793746528524*^9}, {
+   3.8148122622691803`*^9, 3.814812268959445*^9}, 3.814812320418138*^9, {
+   3.814813533117055*^9, 3.814813547241787*^9}, {3.814813650650256*^9, 
+   3.814813813424006*^9}, 3.814813950258754*^9, {3.8148140636443996`*^9, 
+   3.8148141890081453`*^9}, {3.8148142835299797`*^9, 3.814814284646263*^9}, {
+   3.814814407349235*^9, 3.814814425733377*^9}, {3.81481446768155*^9, 
+   3.814814475654377*^9}, {3.814814539051117*^9, 3.8148145966590242`*^9}, {
+   3.814814804079508*^9, 3.814814810021447*^9}, {3.8148148460381603`*^9, 
+   3.8148149087142973`*^9}, {3.814815040167767*^9, 3.8148151785811987`*^9}, {
+   3.814815286669936*^9, 3.814815290018145*^9}, {3.814815498198822*^9, 
+   3.814815528470125*^9}, {3.814815634288436*^9, 3.814815687132044*^9}, {
+   3.814816169134573*^9, 3.8148161700516787`*^9}, {3.81481633201694*^9, 
+   3.814816334248945*^9}, {3.81481639733895*^9, 3.8148164133503323`*^9}, {
+   3.814816517390575*^9, 3.8148165179315443`*^9}, {3.814816598091975*^9, 
+   3.814816598822476*^9}, {3.814816804233276*^9, 3.814816806618821*^9}, {
+   3.814816881343898*^9, 3.814816882326859*^9}, {3.8148175464839373`*^9, 
+   3.814817600753243*^9}, 3.8148176878660994`*^9, {3.814865236095546*^9, 
+   3.814865367754616*^9}, {3.8148658185670424`*^9, 3.81486581884979*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"0a993ee9-9b6e-49ee-9aee-5f9ebff5e8ee"],
 
-Cell[BoxData["\<\"MQTT/input\"\>"], "Output",
- CellChangeTimes->{{3.813450072257251*^9, 3.81345008668216*^9}, {
-   3.813451049950286*^9, 3.8134510664880867`*^9}, 3.8134518640444593`*^9, 
-   3.813451912568355*^9, {3.813452102127294*^9, 3.8134522670132523`*^9}, {
-   3.813452368191463*^9, 3.8134524169765778`*^9}, {3.813452471256024*^9, 
-   3.813452492380761*^9}, 3.8134527906002893`*^9, 3.813452848791206*^9, 
-   3.813453083783846*^9, 3.813453203931696*^9, 3.813453256377592*^9, 
-   3.813453367876545*^9, 3.8134537486647673`*^9, 3.813456681423314*^9, 
-   3.813456887847574*^9, 3.813457369309346*^9, 3.81345749082015*^9, 
-   3.8140031629814157`*^9, 3.814003815162745*^9, 3.814003968034197*^9, 
-   3.814006141681497*^9, 3.814007682690167*^9, 3.8140078307562437`*^9, {
-   3.814007906497134*^9, 3.8140079121953697`*^9}, {3.814008489749604*^9, 
-   3.814008498048025*^9}},
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {"\<\"cloud   -> \"\>", 
+     StyleBox["\<\"www.wolframcloud.com\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\"\>"},
+    {"\<\"user    -> \"\>", 
+     StyleBox["\<\"hernan.fg96\"\>",
+      StripOnInput->False,
+      FontWeight->Bold], "\<\"\"\>"},
+    {"\<\"input   -> \"\>", 
+     StyleBox["\<\"MQTT/input\"\>",
+      StripOnInput->False,
+      FontWeight->
+       Bold], "\<\"  (https://www.wolframcloud.com/obj/hernan.fg96/MQTT/input \
+)\"\>"},
+    {"\<\"output  -> \"\>", 
+     StyleBox["\<\"MQTT/output\"\>",
+      StripOnInput->False,
+      FontWeight->
+       Bold], "\<\"  \
+(https://www.wolframcloud.com/obj/hernan.fg96/MQTT/output)\"\>"}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  TableForm[{{"cloud   -> ", 
+     Style["www.wolframcloud.com", Bold]}, {"user    -> ", 
+     Style["hernan.fg96", Bold]}, {"input   -> ", 
+     Style["MQTT/input", Bold], 
+     "  (https://www.wolframcloud.com/obj/hernan.fg96/MQTT/input )"}, {
+    "output  -> ", 
+     Style["MQTT/output", Bold], 
+     "  (https://www.wolframcloud.com/obj/hernan.fg96/MQTT/output)"}}]]], \
+"Output",
+ CellChangeTimes->{
+  3.814814615075289*^9, 3.81481493492517*^9, 3.814815185576336*^9, 
+   3.814815318317995*^9, 3.814815535019752*^9, 3.8148156954757957`*^9, 
+   3.814816212531027*^9, 3.814816419073491*^9, 3.814817077590787*^9, 
+   3.8148171126718388`*^9, 3.814817606849869*^9, {3.814865359638536*^9, 
+   3.814865384037264*^9}, 3.814865823363298*^9},
  CellLabel->
-  "Out[181]=",ExpressionUUID->"87465208-5744-42a5-b136-e1aafe41238e"],
+  "Out[63]//TableForm=",ExpressionUUID->"d1b91e37-7d39-4a11-841b-\
+ac61a634e1f1"]
+}, Open  ]],
 
-Cell[BoxData["\<\"MQTT/output\"\>"], "Output",
- CellChangeTimes->{{3.813450072257251*^9, 3.81345008668216*^9}, {
-   3.813451049950286*^9, 3.8134510664880867`*^9}, 3.8134518640444593`*^9, 
-   3.813451912568355*^9, {3.813452102127294*^9, 3.8134522670132523`*^9}, {
-   3.813452368191463*^9, 3.8134524169765778`*^9}, {3.813452471256024*^9, 
-   3.813452492380761*^9}, 3.8134527906002893`*^9, 3.813452848791206*^9, 
-   3.813453083783846*^9, 3.813453203931696*^9, 3.813453256377592*^9, 
-   3.813453367876545*^9, 3.8134537486647673`*^9, 3.813456681423314*^9, 
-   3.813456887847574*^9, 3.813457369309346*^9, 3.81345749082015*^9, 
-   3.8140031629814157`*^9, 3.814003815162745*^9, 3.814003968034197*^9, 
-   3.814006141681497*^9, 3.814007682690167*^9, 3.8140078307562437`*^9, {
-   3.814007906497134*^9, 3.8140079121953697`*^9}, {3.814008489749604*^9, 
-   3.8140084980524178`*^9}},
+Cell[CellGroupData[{
+
+Cell["Deleting buffer", "Section",
+ CellChangeTimes->{{3.8148656715908537`*^9, 
+  3.814865685567582*^9}},ExpressionUUID->"be20c8d1-a767-4e33-8c6b-\
+bc9b4aa26525"],
+
+Cell[BoxData[
+ RowBox[{"DeleteCloudExpression", "@", 
+  RowBox[{
+  "CloudExpression", "[", 
+   "\"\<https://www.wolframcloud.com/objects/hernan.fg96/CloudExpression/MQTT/\
+buffer\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.8148142362171*^9, 3.814814240454734*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"ab3cbd35-9d9f-453a-83b7-9a62f485a9ca"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Checking buffer state", "Chapter",
+ CellChangeTimes->{{3.8147916207739487`*^9, 
+  3.814791629875497*^9}},ExpressionUUID->"f1f63771-8347-4a51-9bd4-\
+9caaf162e59f"],
+
+Cell[TextData[{
+ "These two cells give the current status of:\n1) buffer (",
+ StyleBox["https://www.wolframcloud.com/objects/hernan.fg96/CloudExpression/\
+MQTT/buffer",
+  FontWeight->"Bold"],
+ "): association from gate address to list of packets to be delivered to the \
+router connecting that gate.  \n2) pings  (",
+ StyleBox["https://www.wolframcloud.com/objects/hernan.fg96/CloudExpression/\
+MQTT/pings  ",
+  FontWeight->"Bold"],
+ "): association from gate address to last ping ",
+ StyleBox["UnixTime",
+  FontWeight->"Bold"],
+ " send by the router connecting that gate.  "
+}], "Text",
+ CellChangeTimes->{{3.814795364678858*^9, 3.814795367221253*^9}, {
+  3.814795451874383*^9, 3.814795494227243*^9}, {3.8147956509464912`*^9, 
+  3.814795722222851*^9}, {3.814795759023222*^9, 3.814795814450108*^9}, {
+  3.814795851195669*^9, 3.814795907150857*^9}, {3.814795980154516*^9, 
+  3.814796009192164*^9}, {3.814815858334702*^9, 3.814815931875148*^9}, {
+  3.8148160549925203`*^9, 
+  3.814816113440888*^9}},ExpressionUUID->"b932ee15-f810-4c89-8a91-\
+ad2a2160b464"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+    "CloudExpression", "[", 
+     "\"\<https://www.wolframcloud.com/objects/hernan.fg96/CloudExpression/\
+MQTT/buffer\>\"", "]"}], "[", "]"}], "//", "Normal"}], "//", 
+  "TableForm"}]], "Input",
+ CellChangeTimes->{{3.814790338197917*^9, 3.8147904189451437`*^9}, 
+   3.814791192191124*^9, {3.814795370377777*^9, 3.814795372536364*^9}, {
+   3.814795448451223*^9, 3.8147954488502007`*^9}},
  CellLabel->
-  "Out[182]=",ExpressionUUID->"40a37572-8631-4cf7-ae3d-5878f30df442"]
+  "In[217]:=",ExpressionUUID->"b5c5b835-0b13-4977-bd26-4091c34dcc8d"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"\<\"462\"\>", "\[Rule]", 
+       RowBox[{"{", "}"}]}]},
+     {
+      RowBox[{"\<\"338\"\>", "\[Rule]", 
+       RowBox[{"{", "}"}]}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.814865124068288*^9, 3.814865127908806*^9}, 
+   3.814865387636183*^9, {3.814867905054883*^9, 3.814867907922027*^9}, {
+   3.814867984306931*^9, 3.814867985549508*^9}, {3.814868028567993*^9, 
+   3.814868029708847*^9}, {3.81486806782835*^9, 3.8148680688291607`*^9}, {
+   3.814868114687854*^9, 3.814868115690668*^9}, 3.814868454791416*^9, {
+   3.8148685658563013`*^9, 3.814868586980503*^9}, 3.814868636587185*^9, 
+   3.814868955173381*^9, {3.8148689974509172`*^9, 3.814869029364937*^9}, 
+   3.81487146774189*^9, {3.814871505378749*^9, 3.814871511492216*^9}, 
+   3.814872090105237*^9, 3.814886897752825*^9, {3.814887006864126*^9, 
+   3.814887008459153*^9}, {3.814887201977697*^9, 3.814887203083374*^9}, {
+   3.814887304250552*^9, 3.814887307925634*^9}, {3.814888078670146*^9, 
+   3.814888087680768*^9}, {3.814889113383851*^9, 3.814889114993416*^9}, {
+   3.814889289055749*^9, 3.8148892918589773`*^9}, {3.814890124921336*^9, 
+   3.814890143103429*^9}, 3.814890858409522*^9, {3.8148909280722923`*^9, 
+   3.814890932757093*^9}, 3.8149111226109543`*^9},
+ CellLabel->
+  "Out[217]//TableForm=",ExpressionUUID->"4f70cbb3-7c2f-4c40-9af3-\
+2956855f120f"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -305,51 +672,68 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{
-   RowBox[{"ce", "[", "]"}], "//", "Normal"}], "//", "TableForm"}]], "Input",
- CellChangeTimes->{{3.813432667804674*^9, 3.813432668618802*^9}, {
-   3.813438063646099*^9, 3.813438097116786*^9}, {3.8134381903740664`*^9, 
-   3.813438203728075*^9}, 3.813443694223237*^9, {3.8134490731795607`*^9, 
-   3.813449079464828*^9}, {3.8140036188776693`*^9, 3.8140036205237427`*^9}, {
-   3.814003758853547*^9, 3.814003760353156*^9}},
+   RowBox[{
+    RowBox[{
+    "CloudExpression", "[", 
+     "\"\<https://www.wolframcloud.com/objects/hernan.fg96/CloudExpression/\
+MQTT/pings\>\"", "]"}], "[", "]"}], "//", "Normal"}], "//", 
+  "TableForm"}]], "Input",
+ CellChangeTimes->{{3.814814951172297*^9, 3.814814953004052*^9}},
  CellLabel->
-  "In[188]:=",ExpressionUUID->"4f78637e-f525-43d4-95c5-91508c4f907c"],
+  "In[224]:=",ExpressionUUID->"1a3458da-6710-46ad-bb6f-127476f15233"],
 
 Cell[BoxData[
  TagBox[
-  RowBox[{"{", "}"}],
+  TagBox[GridBox[{
+     {
+      RowBox[{"\<\"462\"\>", "\[Rule]", "1605907296"}]},
+     {
+      RowBox[{"\<\"338\"\>", "\[Rule]", "1605907295"}]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   Column],
   Function[BoxForm`e$, 
    TableForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{{3.814003761047718*^9, 3.814003777731565*^9}, {
-   3.814003820721279*^9, 3.814003885114678*^9}, {3.814003917571396*^9, 
-   3.814003933865322*^9}, {3.814003971248863*^9, 3.814003987785555*^9}, {
-   3.814004216998156*^9, 3.814004220294529*^9}, {3.814004279759273*^9, 
-   3.8140042917115307`*^9}, {3.814005341197434*^9, 3.814005365889318*^9}, {
-   3.814005406812373*^9, 3.8140054196309423`*^9}, {3.814005529228055*^9, 
-   3.814005551012535*^9}, 3.8140057553823843`*^9, {3.8140058173562183`*^9, 
-   3.814005820730857*^9}, {3.814005892241819*^9, 3.814005935981141*^9}, {
-   3.814006021100124*^9, 3.8140060579294043`*^9}, 3.814006111535254*^9, {
-   3.814006154559268*^9, 3.81400616251758*^9}, 3.8140062029085093`*^9, {
-   3.814006378993265*^9, 3.8140064229191008`*^9}, {3.814007639403262*^9, 
-   3.8140076880394583`*^9}, 3.814007747313382*^9, 3.81400783463481*^9, 
-   3.8140080240552397`*^9, 3.8140081412201757`*^9, 3.814008212722855*^9, 
-   3.8140082744744987`*^9, {3.8140084861046677`*^9, 3.814008503112646*^9}},
+ CellChangeTimes->{
+  3.8148149539309*^9, {3.814814987486745*^9, 3.81481503156808*^9}, {
+   3.8148151920405283`*^9, 3.814815228914421*^9}, {3.81481530044846*^9, 
+   3.814815331749861*^9}, {3.8148153626557913`*^9, 3.814815379584199*^9}, {
+   3.814815486736205*^9, 3.814815491147928*^9}, {3.814815546421743*^9, 
+   3.814815573185294*^9}, {3.814815705971385*^9, 3.814815741680571*^9}, {
+   3.814816126827052*^9, 3.8148161512305517`*^9}, {3.814816220543817*^9, 
+   3.8148162915116377`*^9}, {3.814816421662364*^9, 3.8148164859789762`*^9}, {
+   3.814817113566389*^9, 3.814817128712597*^9}, {3.814817252533304*^9, 
+   3.814817254849598*^9}, 3.814817294033153*^9, {3.8148174222520933`*^9, 
+   3.814817435254528*^9}, {3.81481748735203*^9, 3.814817497073481*^9}, {
+   3.8148176105248127`*^9, 3.8148176427709913`*^9}, {3.81486512925942*^9, 
+   3.814865132144205*^9}, 3.814865389099173*^9, 3.814867906231494*^9, {
+   3.814867986817143*^9, 3.814867990797696*^9}, {3.814868030994796*^9, 
+   3.8148680387105494`*^9}, {3.814868117082513*^9, 3.814868118952059*^9}, {
+   3.814868457356718*^9, 3.8148684602130957`*^9}, 3.8148685679065723`*^9, 
+   3.814868637822529*^9, {3.8148689569531527`*^9, 3.814868961660078*^9}, 
+   3.814871470788916*^9, {3.814871506652176*^9, 3.814871513245859*^9}, {
+   3.814872091252667*^9, 3.8148720931388893`*^9}, {3.81488690026851*^9, 
+   3.8148869030978518`*^9}, {3.814887009803029*^9, 3.814887019081805*^9}, {
+   3.814887204353923*^9, 3.8148872116333647`*^9}, {3.8148880901413717`*^9, 
+   3.814888092293442*^9}, {3.8148901274915237`*^9, 3.814890130477087*^9}, {
+   3.814911124183804*^9, 3.81491113562221*^9}, 3.8149189442118807`*^9},
  CellLabel->
-  "Out[188]//TableForm=",ExpressionUUID->"f28a06af-3a56-4597-a195-\
-f2228b758d35"]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"Put", "[", 
-   RowBox[{
-    RowBox[{"<|", "|>"}], ",", "ce"}], "]"}], ";"}]], "Input",
- CellChangeTimes->{{3.814003549711535*^9, 3.814003601992613*^9}, 
-   3.814003774878604*^9},
- CellLabel->
-  "In[112]:=",ExpressionUUID->"eedc20fe-6fbd-4143-84d5-62ef7a5aa803"]
+  "Out[224]//TableForm=",ExpressionUUID->"9aed2b3c-cd85-4d50-859a-\
+d60bb5110cb3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
 },
 WindowSize->{1366, 704},
 WindowMargins->{{0, Automatic}, {0, Automatic}},
+SpellingDictionaries->{"CorrectWords"->{"Langevin", "hernan"}},
 Magnification:>0.9 Inherited,
 FrontEndVersion->"12.0 for Linux x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
@@ -365,21 +749,37 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 509, 9, 29, "Input",ExpressionUUID->"e0937394-699c-4498-bd3b-9fc90a0741b8"],
 Cell[CellGroupData[{
-Cell[1092, 33, 121, 2, 29, "Input",ExpressionUUID->"4c406e40-5f01-4950-b1b8-727b8b2215e7"],
-Cell[1216, 37, 339, 6, 33, "Output",ExpressionUUID->"b9b27d3b-e490-4ad3-83fc-e2a4e042dce9"]
+Cell[580, 22, 180, 2, 90, "Title",ExpressionUUID->"516c64ed-0726-45b9-84b3-38d2222c3f12"],
+Cell[CellGroupData[{
+Cell[785, 28, 154, 3, 64, "Chapter",ExpressionUUID->"743ffe97-7135-49c7-a57e-44cec5927a0b"],
+Cell[942, 33, 1602, 41, 102, "Text",ExpressionUUID->"97a5362a-0ade-45be-bba2-fc27c05e95f9"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1592, 48, 11040, 219, 668, "Input",ExpressionUUID->"0a993ee9-9b6e-49ee-9aee-5f9ebff5e8ee"],
-Cell[12635, 269, 948, 14, 33, "Output",ExpressionUUID->"87465208-5744-42a5-b136-e1aafe41238e"],
-Cell[13586, 285, 951, 14, 33, "Output",ExpressionUUID->"40a37572-8631-4cf7-ae3d-5878f30df442"]
+Cell[2581, 79, 192, 3, 64, "Chapter",ExpressionUUID->"2280b48d-4918-4d54-917c-1dccdc29a710"],
+Cell[2776, 84, 542, 9, 56, "Text",ExpressionUUID->"07e61074-2f04-42f2-8620-9d92d7045e43"],
+Cell[CellGroupData[{
+Cell[3343, 97, 20312, 412, 1350, "Input",ExpressionUUID->"0a993ee9-9b6e-49ee-9aee-5f9ebff5e8ee"],
+Cell[23658, 511, 1854, 48, 100, "Output",ExpressionUUID->"d1b91e37-7d39-4a11-841b-ac61a634e1f1"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14574, 304, 537, 10, 29, "Input",ExpressionUUID->"4f78637e-f525-43d4-95c5-91508c4f907c"],
-Cell[15114, 316, 1231, 21, 47, "Output",ExpressionUUID->"f28a06af-3a56-4597-a195-f2228b758d35"]
+Cell[25549, 564, 162, 3, 63, "Section",ExpressionUUID->"be20c8d1-a767-4e33-8c6b-bc9b4aa26525"],
+Cell[25714, 569, 346, 7, 29, "Input",ExpressionUUID->"ab3cbd35-9d9f-453a-83b7-9a62f485a9ca"]
+}, Open  ]]
 }, Open  ]],
-Cell[16360, 340, 296, 8, 29, "Input",ExpressionUUID->"eedc20fe-6fbd-4143-84d5-62ef7a5aa803"]
+Cell[CellGroupData[{
+Cell[26109, 582, 168, 3, 64, "Chapter",ExpressionUUID->"f1f63771-8347-4a51-9bd4-9caaf162e59f"],
+Cell[26280, 587, 1054, 22, 79, "Text",ExpressionUUID->"b932ee15-f810-4c89-8a91-ad2a2160b464"],
+Cell[CellGroupData[{
+Cell[27359, 613, 529, 13, 29, "Input",ExpressionUUID->"b5c5b835-0b13-4977-bd26-4091c34dcc8d"],
+Cell[27891, 628, 1749, 38, 63, "Output",ExpressionUUID->"4f70cbb3-7c2f-4c40-9af3-2956855f120f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29677, 671, 402, 11, 29, "Input",ExpressionUUID->"1a3458da-6710-46ad-bb6f-127476f15233"],
+Cell[30082, 684, 2300, 44, 63, "Output",ExpressionUUID->"9aed2b3c-cd85-4d50-859a-d60bb5110cb3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
 }
 ]
 *)

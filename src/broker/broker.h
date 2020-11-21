@@ -50,6 +50,7 @@ public:
 	void send_ping();
 	void read_ping(packet);
 
-	void disconnect(int add, bool notify = false);
+	void disconnect(int add, bool notify = true);
+	void disconnect();
 	void read_disc(packet);
 };

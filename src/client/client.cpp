@@ -46,7 +46,7 @@ void client::check_packets()
 		int key = (connections.count(broker_address) && connections[broker_address].status_code==200)? connections[broker_address].key : 0;
 
 		pack.decrypt(key);
-//		if(!pack.authentic()) continue;
+		if(!pack.authentic()) {cout<<"not authentic packet allegedly from device "<<broker_address<<" ignored"<<endl; continue;}
 
 		if(pack.type == "cres") read_cres(pack);
 		if(pack.type == "sres") read_sres(pack);
@@ -55,6 +55,7 @@ void client::check_packets()
 		if(pack.type == "join") read_join(pack);
 		if(pack.type == "left") read_left(pack);
 		if(pack.type == "ping") read_ping(pack);
+		if(pack.type == "disc") read_disc(pack);
 	}
 }
 
@@ -70,7 +71,7 @@ void client::send_creq(int broker_address)
 	packet pack = {.receiver_address = broker_address, .type = "creq", .payload = {to_string(Diffie_Hellman(pre_key))} };
 	send(pack);
 
-	connections[broker_address] = connection{.address=broker_address, .time_stamp=time(0), .key=pre_key};
+	connections[broker_address] = connection{.address=broker_address, .time_stamp=time(0), .key = pre_key, .last_ping = time(0)};
 }
 
 void client::send_creq()
@@ -150,7 +151,7 @@ void client::read_sres(packet pack)
 
 void client::send_publ(entry pair, int broker_address)
 {
-	if(!connections.count(broker_address)) cout<<"Not connected to broker " << broker_address <<endl;
+	if(!connections.count(broker_address)) cout<<"Cannot publish to not connected broker " << broker_address <<endl;
 
 	else send(packet{.receiver_address = broker_address, .type = "publ", .payload = {pair.topic, to_string(pair.val)} });
 }
@@ -191,7 +192,7 @@ void client::read_left(packet pack)
 
 
 
-void client::check_pings() { long int t0=time(0); for(auto& it : connections) if(it.second.last_ping < t0-30) disconnect(it.second.address, true); }
+void client::check_pings() { long int t0=time(0); for(auto& it : connections) if(it.second.last_ping < t0-100) {disconnect(it.second.address); return;} }
 
 void client::send_ping(int add) { send(packet {.receiver_address = add, .type = "ping"}); }
 
@@ -206,7 +207,7 @@ void client::read_ping(packet pack)
 }
 
 
-void client::read_disc(packet pack) { disconnect(pack.sender_address); }
+void client::read_disc(packet pack) { disconnect(pack.sender_address, false); }
 
 void client::disconnect(int add, bool notify)
 {
@@ -214,6 +215,16 @@ void client::disconnect(int add, bool notify)
 
 	connections.erase(add);
 	for(auto& it : subscriptions) remove_if(it.second.begin(), it.second.end(), [=](subscription s) {return s.address==add;} );
-
+	cout<<"Broker "<< add <<" disconnected"<<endl;
 	if(notify) send(packet {.receiver_address = add, .type = "disc"});
+}
+
+void client::disconnect()
+{
+	if(connections.size()==0) {cout << "no connected to any broker" << endl  ; return;}
+	if(connections.size()==1) {disconnect( connections.begin() ->  first ); return;}
+
+	cout<<"You must specify broker address. Currently connected brokers addresses are:"<<endl;
+	for(auto it : connections) cout<<it.first<<endl;
+	cout<<endl;
 }

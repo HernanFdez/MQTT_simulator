@@ -32,8 +32,26 @@ int Diffie_Hellman(int a, int g = 541) {int N = 7919; return mod_pow(g, a, N);}
 
 // simple encryption-decryption protocol based on adding-substracting
 // a previously agreed integer (key) to every character in the string (payload)
-string encrypt(string str, int key) {for(auto& c : str) c+=key; return str;}
-string decrypt(string str, int key) {for(auto& c : str) c-=key; return str;}
+string shift(string str, int delta) 
+{
+  delta = delta%(128-32);
+  string shifted = "";
+  for(auto& c : str) 
+  {
+    int ascii = (int) c; 
+//    cout<<"ascii0 = "<<ascii<<endl;
+    ascii += -32 +delta;
+    if(ascii<0) ascii += (128-32); 
+//    cout<<"asciim = "<<ascii<<endl;
+    ascii = ascii%(128-32) +32;
+//    cout<<"asciif = "<<ascii<<endl;
+    shifted += char(ascii);
+  }
+
+  return shifted;
+}
+string encrypt(string str, int key) {return shift(str,  key);}
+string decrypt(string str, int key) {return shift(str, -key);}
 
 
 string write_payload(vector<string> payload, int key)

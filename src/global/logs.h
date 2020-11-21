@@ -10,7 +10,7 @@ struct connection
 	long int time_stamp=0;
 	int key=0;
 	string description="";
-	long int last_ping;
+	long int last_ping=0;
 };
 
 
