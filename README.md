@@ -30,7 +30,7 @@ A broker session can be started using the "broker" executable located on the exe
 
 
 ### Sessions
-Broker and client (and eventually router) sessions provide some basic user interface to control the corresonding virtual device
+Broker and client (and eventually router) sessions provide some basic user interface to control the corresponding virtual device
 
 A system help is automatically shown whenever a session is started (when the corresponding executable is run), explaining the supported control commands
 
