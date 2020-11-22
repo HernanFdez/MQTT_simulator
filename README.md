@@ -157,7 +157,7 @@ Routers are automatically disconnected after a time without sending requests (ta
 
 
 ### Compilation
-In the "cmp" subdirectory, linux-for-linux and linux-for-windows compiler scripts are provided to generate executables for linux and windows using a linux terminal
+In the "cmp" subdirectory, linux-for-linux and linux-for-windows compilation scripts are provided to generate executables for linux and windows using a linux terminal
 
 These scripts are to be run from the main directory "MQTT_simulator", not from within "cmp"
 
