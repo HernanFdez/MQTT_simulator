@@ -1,5 +1,0 @@
-implement function handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
-
-
-
-

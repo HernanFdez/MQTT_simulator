@@ -157,6 +157,14 @@ Routers are automatically disconnected after a time without sending requests (ta
 
 
 
+### Possible Improvements
+Implement function handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
+
+Encrypt connection between local routers and the master router
+
+Use request-response scheme also for router connections, and checking for used gates and authenticity
+
+
 
 
 
