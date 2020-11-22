@@ -172,6 +172,10 @@ Encrypt connections between local routers and the master router
 Use request-response scheme also for router connections, and check for used gates and authenticity
 
 
+## Hope you enjoy playing around with it!
+## Any comment is always welcome
+
+# Thanks!  
 
 
 
