@@ -165,7 +165,7 @@ The linux-for-windows script needs x86_64-w64-mingw32-g++ compiler, which can be
 
 
 ### Possible Improvements
-Implement function handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
+Implement error handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
 
 Encrypt connection between local routers and the master router
 
