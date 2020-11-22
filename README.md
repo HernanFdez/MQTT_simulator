@@ -156,6 +156,13 @@ Delivered packets are automatically deleted, and the maximum number of packets s
 Routers are automatically disconnected after a time without sending requests (taken as pings)
 
 
+### Compilation
+In the "cmp" subdirectory, linux-for-linux and linux-for-windows compiler scripts are provided to generate executables for linux and windows using a linux terminal
+
+These scripts are to be run from the main directory "MQTT_simulator", not from within "cmp"
+
+The linux-for-windows script needs x86_64-w64-mingw32-g++ compiler, which can be installed using "sudo apt-get install mingw-w64"
+
 
 ### Possible Improvements
 Implement function handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
