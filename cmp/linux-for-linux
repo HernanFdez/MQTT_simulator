@@ -1,0 +1,2 @@
+dir=src
+g++ -O3 -std=c++2a ${dir}/$1/*.cpp -I${dir}/$1 -I${dir}/global -o exe/linux/$1_side -lpthread
