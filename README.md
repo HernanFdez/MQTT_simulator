@@ -14,7 +14,7 @@ The core of this project consists of two separate programs, called broker and cl
 
 These programs are (as for now) to be run on the same directory, since they communicate with each other through an automatically created register file ("network")
 
-It is this file that both, brokers and clients (and eventually routers), write to and read from, transfering packets, each of which consists of a single text line
+It is this file that both, brokers and clients (and eventually routers), write to and read from, transferring packets, each of which consists of a single text line
 
 
 ### MQTT Client
@@ -48,7 +48,7 @@ receiver_address -> address of the device (broker or client) receiving the packe
 
 type             -> type of the packet (details below)
 
-payload          -> actual information intended to be transmited (status code, encryption pre-key, topic name, entry pair, type of device joining or leaving the network, etc...)
+payload          -> actual information intended to be transmitted (status code, encryption pre-key, topic name, entry pair, type of device joining or leaving the network, etc...)
 
 signature        -> number validating the authenticity of the packet (some sort of simple hash code for the decoded payload)
 
@@ -63,7 +63,7 @@ creq (connection request)    -> client requesting connection to a broker
 
 cres (connection response)   -> broker responding to a connection request
 
-sreq (subscription request)  -> client requesting substription to a broker on some topic
+sreq (subscription request)  -> client requesting subscription to a broker on some topic
 
 sres (subscription response) -> broker responding to a subscription request
 
@@ -71,7 +71,7 @@ publ (publish)               -> device publishing data entry pair (details below
 
 ping                         -> device sending ping
 
-disc (disconnection)         -> device notifying connection termitated
+disc (disconnection)         -> device notifying connection terminated
 
 
 
@@ -80,15 +80,15 @@ An instance of type "entry" is a tuple of the form {topic, value} representing a
 
 
 ### Connection
-An instance of type "connection" represents an abstraction of an stablished connection to another device
+An instance of type "connection" represents an abstraction of an established connection to another device
 
 It stores the following data:
 
-address     -> (local or global) address of the device with which the connection is stablished
+address     -> (local or global) address of the device with which the connection is established
 
 status_code -> status of the connection (200 meaning OK)
 
-time_stamp  -> UnixTime corresponding to the instant the connection was stablished
+time_stamp  -> UnixTime corresponding to the instant the connection was established
 
 key         -> key (or pre-key at the initial Diffie-Hellman key generation process) used to encrypt/decrypt packets (explained later on)
 
@@ -98,17 +98,17 @@ last_ping   -> UnixTime corresponding to the last ping received from the connect
 
 
 ### Subscription
-An instance of type "subscription" represents an abstraction of an stablished subscription from a client to a broker
+An instance of type "subscription" represents an abstraction of an established subscription from a client to a broker
 
 It stores the following data:
 
 topic       -> topic of the subscription
 
-address     -> (local or global) address of the device with which the subscription is stablished
+address     -> (local or global) address of the device with which the subscription is established
 
 status_code -> status of the subscription (200 meaning OK)
 
-time_stamp  -> UnixTime corresponding to the instant the subscription was stablished
+time_stamp  -> UnixTime corresponding to the instant the subscription was established
 
 description -> human readable description of the subscription
 
@@ -116,11 +116,11 @@ description -> human readable description of the subscription
 ### Encryption
 Payloads are encrypted using a simple scheme of character shifting 
 
-The key used to encrypt/decrypt packets sent between two devices is generated when the connection is stablished
+The key used to encrypt/decrypt packets sent between two devices is generated when the connection is established
 
-A simpliflied version of the Diffie-Hellman key exchange protocol is used for this purpose
+A simplified version of the Diffie-Hellman key exchange protocol is used for this purpose
 
-This key is stored in the "connection" instance created when the connection is stablished
+This key is stored in the "connection" instance created when the connection is established
 
 
 
@@ -133,7 +133,7 @@ This was later extended by creating two additional programs, namely: a router an
 
 
 ### Router
-An object of class "router" represents an abstraction of a network router, able to redirect packets in and out of the network it is conncted to
+An object of class "router" represents an abstraction of a network router, able to redirect packets in and out of the network it is connected to
 
 This way, several virtual networks can be connected to each other, forming sort of a virtual internet
 
@@ -157,7 +157,7 @@ Routers are automatically disconnected after a time without sending requests (ta
 
 
 ### Compilation
-In the "cmp" subdirectory, linux-for-linux and linux-for-windows compilation scripts are provided to generate executables for linux and windows using a linux terminal
+In the "cmp" sub-directory, linux-for-linux and linux-for-windows compilation scripts are provided to generate executables for linux and windows using a linux terminal
 
 These scripts are to be run from the main directory "MQTT_simulator", not from within "cmp"
 
@@ -165,7 +165,7 @@ The linux-for-windows script needs x86_64-w64-mingw32-g++ compiler, which can be
 
 
 ### Possible Improvements
-Implement error handling methods that capture exceptions generated (from stoi(), for exemple) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
+Implement error handling methods that capture exceptions generated (from stoi(), for example) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
 
 Encrypt connections between local routers and the master router
 
