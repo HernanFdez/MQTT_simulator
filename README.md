@@ -166,6 +166,10 @@ These scripts are to be run from the main directory "MQTT_simulator", not from w
 The linux-for-windows script needs x86_64-w64-mingw32-g++ compiler, which can be installed using "sudo apt-get install mingw-w64"
 
 
+### Detected Errors
+Windows executable "router_side.exe" throws error "_znst7__cxx1118basic_stringstreamicst11char_traitsicesaiceec1ev symbol not found" (solution unknown)
+
+
 ### Possible Improvements
 Implement error handling methods that capture exceptions generated (from stoi(), for example) when dealing with incorrectly formatted packets, in order to avoid fatal malfunctioning
 
