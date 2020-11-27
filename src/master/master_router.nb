@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     34689,        778]
-NotebookOptionsPosition[     32716,        733]
-NotebookOutlinePosition[     33143,        750]
-CellTagsIndexPosition[     33100,        747]
+NotebookDataLength[     34773,        776]
+NotebookOptionsPosition[     32800,        731]
+NotebookOutlinePosition[     33227,        748]
+CellTagsIndexPosition[     33184,        745]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -623,13 +623,13 @@ MQTT/buffer\>\"", "]"}], "[", "]"}], "//", "Normal"}], "//",
  CellChangeTimes->{{3.814790338197917*^9, 3.8147904189451437`*^9}, 
    3.814791192191124*^9, {3.814795370377777*^9, 3.814795372536364*^9}, {
    3.814795448451223*^9, 3.8147954488502007`*^9}},
- CellLabel->"In[55]:=",ExpressionUUID->"b5c5b835-0b13-4977-bd26-4091c34dcc8d"],
+ CellLabel->"In[3]:=",ExpressionUUID->"b5c5b835-0b13-4977-bd26-4091c34dcc8d"],
 
 Cell[BoxData[
  TagBox[
   TagBox[GridBox[{
      {
-      RowBox[{"\<\"539\"\>", "\[Rule]", 
+      RowBox[{"\<\"66\"\>", "\[Rule]", 
        RowBox[{"{", "}"}]}]}
     },
     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
@@ -661,10 +661,9 @@ Cell[BoxData[
    3.8151248960667562`*^9, 3.815124897322385*^9}, {3.815125266603119*^9, 
    3.815125270387916*^9}, {3.8151273327596416`*^9, 3.815127361387044*^9}, {
    3.815127400307132*^9, 3.815127421696463*^9}, {3.815127484389657*^9, 
-   3.815127552530814*^9}},
+   3.815127552530814*^9}, {3.815482961013659*^9, 3.815482991119337*^9}},
  CellLabel->
-  "Out[55]//TableForm=",ExpressionUUID->"67d85b40-44be-47c7-928c-\
-70dd7adc8f82"]
+  "Out[3]//TableForm=",ExpressionUUID->"da3b56c7-9742-45fa-9566-abaa8bea191a"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -679,13 +678,13 @@ Cell[BoxData[
 MQTT/pings\>\"", "]"}], "[", "]"}], "//", "Normal"}], "//", 
   "TableForm"}]], "Input",
  CellChangeTimes->{{3.814814951172297*^9, 3.814814953004052*^9}},
- CellLabel->"In[56]:=",ExpressionUUID->"1a3458da-6710-46ad-bb6f-127476f15233"],
+ CellLabel->"In[7]:=",ExpressionUUID->"1a3458da-6710-46ad-bb6f-127476f15233"],
 
 Cell[BoxData[
  TagBox[
   TagBox[GridBox[{
      {
-      RowBox[{"\<\"539\"\>", "\[Rule]", "1606138789"}]}
+      RowBox[{"\<\"66\"\>", "\[Rule]", "1606494244"}]}
     },
     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
     GridBoxSpacings->{"Columns" -> {
@@ -723,10 +722,9 @@ Cell[BoxData[
    3.814911124183804*^9, 3.81491113562221*^9}, 3.8149189442118807`*^9, {
    3.815124862479261*^9, 3.815124865095407*^9}, {3.815124898498165*^9, 
    3.8151249069814167`*^9}, {3.815127335009413*^9, 3.815127357067972*^9}, 
-   3.815127559145586*^9},
+   3.815127559145586*^9, {3.8154829922594347`*^9, 3.815483009841959*^9}},
  CellLabel->
-  "Out[56]//TableForm=",ExpressionUUID->"cf8023a9-c09c-4601-8a4f-\
-8ce9f38a65d1"]
+  "Out[7]//TableForm=",ExpressionUUID->"340407d7-443c-48c3-acf2-ea1127446435"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -771,12 +769,12 @@ Cell[CellGroupData[{
 Cell[26109, 582, 168, 3, 64, "Chapter",ExpressionUUID->"f1f63771-8347-4a51-9bd4-9caaf162e59f"],
 Cell[26280, 587, 1054, 22, 79, "Text",ExpressionUUID->"b932ee15-f810-4c89-8a91-ad2a2160b464"],
 Cell[CellGroupData[{
-Cell[27359, 613, 525, 12, 29, "Input",ExpressionUUID->"b5c5b835-0b13-4977-bd26-4091c34dcc8d"],
-Cell[27887, 627, 1942, 39, 47, "Output",ExpressionUUID->"67d85b40-44be-47c7-928c-70dd7adc8f82"]
+Cell[27359, 613, 524, 12, 29, "Input",ExpressionUUID->"b5c5b835-0b13-4977-bd26-4091c34dcc8d"],
+Cell[27886, 627, 1984, 38, 47, "Output",ExpressionUUID->"da3b56c7-9742-45fa-9566-abaa8bea191a"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[29866, 671, 398, 10, 29, "Input",ExpressionUUID->"1a3458da-6710-46ad-bb6f-127476f15233"],
-Cell[30267, 683, 2409, 45, 47, "Output",ExpressionUUID->"cf8023a9-c09c-4601-8a4f-8ce9f38a65d1"]
+Cell[29907, 670, 397, 10, 29, "Input",ExpressionUUID->"1a3458da-6710-46ad-bb6f-127476f15233"],
+Cell[30307, 682, 2453, 44, 47, "Output",ExpressionUUID->"340407d7-443c-48c3-acf2-ea1127446435"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
